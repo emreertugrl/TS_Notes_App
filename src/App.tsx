@@ -7,6 +7,7 @@ import { useState } from "react";
 import { Note, NoteData, Tag } from "./types";
 import { v4 } from "uuid";
 import { useLocalStorage } from "@uidotdev/usehooks";
+import Layout from "./components/Layout";
 
 const App = () => {
   const [notes, setNotes] = useLocalStorage<Note[]>("NOTES", []);
@@ -39,8 +40,10 @@ const App = () => {
             />
           }
         />
-        <Route path="/note/:id" element={<Detail />} />
-        <Route path="/note/:id/edit" element={<Edit />} />
+        <Route path="/note/:id" element={<Layout notes={notes} />}>
+          <Route index element={<Detail />} />
+          <Route path="edit" element={<Edit />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );
