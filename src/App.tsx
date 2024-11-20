@@ -24,7 +24,14 @@ const App = () => {
     // state'i güncelle
     setNotes((prev) => [...prev, newNote]);
   };
-  console.log(notes);
+
+  // not silme fonksiyonu
+  const deleteNote = (id: string): void => {
+    if (!confirm("Silmek istediğinizden emin misiniz?")) return;
+
+    setNotes((prev) => prev.filter((i) => i.id !== id));
+  };
+
   return (
     <BrowserRouter>
       <Routes>
@@ -40,7 +47,7 @@ const App = () => {
           }
         />
         <Route path="/note/:id" element={<Layout notes={notes} />}>
-          <Route index element={<Detail />} />
+          <Route index element={<Detail deleteNote={deleteNote} />} />
           <Route path="edit" element={<Edit />} />
         </Route>
       </Routes>
