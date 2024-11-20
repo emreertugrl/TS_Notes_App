@@ -17,6 +17,23 @@ type Props = { notes: Note[]; availableTags: Tag[] };
 const Main = ({ notes, availableTags }: Props) => {
   const [query, setQuery] = useState<string>("");
   const [selectedTags, setSelectedTags] = useState<Tag[]>([]);
+
+  /*
+   * 1) Not başlığı 1. inputta aratılan metni içermelidir. Note'un başlığının küçük harde çevrilmiş hali aratılan metnin küçük harfe çevrilmiş halini içeriyorsa koşul sağlanır.
+      note.title.toLowerCase().includes(query.toLowerCase())
+
+   * 2) Seçilen etiketler note'un içindeki etiketler ile bire bir eşleşmelidir. Seçilen etiketler dizisindeki her bir etiketi için note'a ait etiketler arasında eşleşme kontrolü yapılacak
+  
+   
+   */
+  const filtredNotes = notes.filter(
+    (note) =>
+      note.title.toLowerCase().includes(query.toLowerCase()) &&
+      selectedTags.every((s_tag) =>
+        note.tags.some((n_tag) => n_tag.value === s_tag.value)
+      )
+  );
+
   return (
     <Container className="mx-auto py-5">
       {/* Üst Kısım */}
@@ -54,7 +71,7 @@ const Main = ({ notes, availableTags }: Props) => {
 
       {/* Not Listesi */}
       <Row xs={1} sm={2} lg={3} xl={4} className="mt-4 g-4">
-        {notes.map((note) => (
+        {filtredNotes.map((note) => (
           <Col key={note.id}>
             <Card note={note} />
           </Col>
