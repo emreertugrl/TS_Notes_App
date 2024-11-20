@@ -6,10 +6,11 @@ import Edit from "./pages/Edit";
 import { useState } from "react";
 import { Note, NoteData, Tag } from "./types";
 import { v4 } from "uuid";
+import { useLocalStorage } from "@uidotdev/usehooks";
 
 const App = () => {
-  const [notes, setNotes] = useState<Note[]>([]);
-  const [tags, setTags] = useState<Tag[]>([]);
+  const [notes, setNotes] = useLocalStorage<Note[]>("NOTES", []);
+  const [tags, setTags] = useLocalStorage<Tag[]>("TAGS", []);
 
   // yeni etiket oluşturma
   const createTag = (newTag: Tag): void => {
