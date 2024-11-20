@@ -28,7 +28,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Main />} />
+        <Route path="/" element={<Main notes={notes} availableTags={tags} />} />
         <Route
           path="/new"
           element={
