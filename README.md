@@ -1,50 +1,66 @@
-# React + TypeScript + Vite
+# 📝 NotesApp
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Project Description
 
-Currently, two official plugins are available:
+Welcome to NotesApp, your ultimate note-taking companion! This app helps you effortlessly create, organize, and find your notes with advanced features like markdown support, tagging, and local storage persistence. Simplify your workflow and keep your thoughts organized with NotesApp!
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+- Create and Edit Notes: Effortlessly add and modify notes.
+- Tagging System: Organize notes with custom tags for easy access.
+- Markdown Support: Format notes for a rich-text experience.
+- Search Functionality: Quickly find notes by title or tags.
+- Local Storage Persistence: Your notes are securely saved in your browser.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Used Technologies
 
-- Configure the top-level `parserOptions` property like this:
+- React Router: For page navigation.
+- React.js: Interface and UI components.
+- Bootstrap: For responsive and modern design.
+- React Select: for enhanced dropdown and selection inputs
+- React Markdown: Used to render Markdown formatted text in a rich, styled format.
+- UUID: Unique identifier generation.
+- TypeScript: Adds type safety to JavaScript, ensuring better development experience and fewer runtime errors.
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## Development
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+To develop the project, you can use the following commands:
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+1. Clone the project.
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+   ```bash
+   git clone https://github.com/emreertugrl/TS_Notes_App.git
+   ```
+
+2. Navigate to the project directory:
+
+   ```bash
+   cd TS_Notes_App
+   ```
+
+3. Install the dependencies:
+
+   ```bash
+   npm install
+   ```
+
+4. Start the development server:
+
+   ```bash
+    npm run dev
+   ```
+
+## Visual
+
+<img src="./public/note.gif" alt="note-app-gif">
+
+## Live Demo
+
+<a href="https://ts-notes-app-emreertugrls-projects.vercel.app/">Vercel Project View</a>
+
+## Contact
+
+For any questions or suggestions, feel free to reach out:
+
+- Email: emreertugrl7@gmail.com
+- LinkedIn: [emreertugrul7](https://www.linkedin.com/in/emreertugrul7/)
