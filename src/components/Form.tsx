@@ -34,7 +34,7 @@ const CustomForm = () => {
           <Form.Group>
             <Form.Label>Etiketler</Form.Label>
             <ReactSelect
-              options={selectedTags} //ekrana eklenmesi için
+              value={selectedTags} //ekrana eklenmesi için
               // etiketleri silmek istediğimizde bunu kullanırız.
               onChange={(allTags) => setSelectedTags(allTags as Tag[])}
               // select kısmına yazılanları oluşturmak için
