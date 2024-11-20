@@ -25,11 +25,19 @@ const App = () => {
     setNotes((prev) => [...prev, newNote]);
   };
 
-  // not silme fonksiyonu
+  // note silme fonksiyonu
   const deleteNote = (id: string): void => {
     if (!confirm("Silmek istediğinizden emin misiniz?")) return;
 
     setNotes((prev) => prev.filter((i) => i.id !== id));
+  };
+  // note düzenleme fonksiyonu
+  const updateNote = (id: string, updatedData: NoteData): void => {
+    const updatedArr = notes.map((note) =>
+      note.id === id ? { id, ...updatedData } : note
+    );
+
+    setNotes(updatedArr);
   };
 
   return (
@@ -48,7 +56,16 @@ const App = () => {
         />
         <Route path="/note/:id" element={<Layout notes={notes} />}>
           <Route index element={<Detail deleteNote={deleteNote} />} />
-          <Route path="edit" element={<Edit />} />
+          <Route
+            path="edit"
+            element={
+              <Edit
+                handleSubmit={updateNote}
+                createTag={createTag}
+                availableTags={tags}
+              />
+            }
+          />
         </Route>
       </Routes>
     </BrowserRouter>

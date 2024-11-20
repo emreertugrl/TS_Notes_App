@@ -1,14 +1,26 @@
 import { Container } from "react-bootstrap";
 import Form from "../components/Form";
 import { useOutletContext } from "react-router-dom";
+import { Note, NoteData, Tag } from "../types";
 
-const Edit = () => {
-  const note = useOutletContext();
-  console.log(note);
+type Props = {
+  handleSubmit: (id: string, updatedData: NoteData) => void;
+  createTag: (tag: Tag) => void;
+  availableTags: Tag[];
+};
+const Edit = ({ availableTags, createTag, handleSubmit }: Props) => {
+  const note: Note = useOutletContext();
   return (
     <Container className="py-5">
-      <h2>Yeni Not Oluştur</h2>
-      {/* <Form /> */}
+      <h2>Notu Düzenle</h2>
+      <Form
+        handleSubmit={(data) => handleSubmit(note.id, data)}
+        createTag={createTag}
+        availableTags={availableTags}
+        title={note.title}
+        tags={note.tags}
+        markdown={note.markdown}
+      />
     </Container>
   );
 };
