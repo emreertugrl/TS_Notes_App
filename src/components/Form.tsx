@@ -1,27 +1,35 @@
 import { FormEvent, useRef, useState } from "react";
 import { Button, Col, Form, Row, Stack } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import ReactSelect from "react-select/creatable";
 import { v4 } from "uuid";
 import { Tag } from "../types";
+import { CreateProps } from "../pages/Create";
 
-const CustomForm = () => {
+const CustomForm = ({
+  availableTags,
+  createTag,
+  handleSubmit,
+}: CreateProps) => {
+  const navigate = useNavigate();
   const titleRef = useRef<HTMLInputElement>(null);
   const textRef = useRef<HTMLTextAreaElement>(null);
   const [selectedTags, setSelectedTags] = useState<Tag[]>([]);
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleForm = (e: FormEvent) => {
     e.preventDefault();
 
     // inputlardaki verilere eriş
-    const title = titleRef.current?.value;
-    const markdown = textRef.current?.value;
+    const title = titleRef.current?.value || "";
+    const markdown = textRef.current?.value || "";
 
-    // todo global notlar state'ine kaydet
-    console.log(title, markdown, selectedTags);
+    // global notlar state'ine kaydet
+    handleSubmit({ title, markdown, tags: selectedTags });
+    // anasayfaya yönlendir.
+    navigate("/");
   };
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form onSubmit={handleForm}>
       {/* Başlık-Etiker Inputu */}
       <Row className="my-4">
         <Col>
@@ -44,6 +52,7 @@ const CustomForm = () => {
                 console.log(newTag);
 
                 // todo global state'e aktar
+                createTag(newTag);
 
                 // seçili etiketler
                 setSelectedTags([...selectedTags, newTag]);
