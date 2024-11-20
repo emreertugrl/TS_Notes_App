@@ -3,7 +3,6 @@ import Main from "./pages/Main";
 import Create from "./pages/Create";
 import Detail from "./pages/Detail";
 import Edit from "./pages/Edit";
-import { useState } from "react";
 import { Note, NoteData, Tag } from "./types";
 import { v4 } from "uuid";
 import { useLocalStorage } from "@uidotdev/usehooks";
